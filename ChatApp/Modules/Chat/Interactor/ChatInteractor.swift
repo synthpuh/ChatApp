@@ -42,12 +42,9 @@ final class ChatInteractor: ChatInteractorProtocol {
     }
     
     func sendMessage(_ text: String) async {
-        print("sendMessageCalled with \(text)")
         guard let currentUser = await store.state.currentUser else {
-            print("No current user - bailing")
             return
         }
-        print("Sending as: \(currentUser.id)")
         do {
             let message = try await service.sendMessage(text, senderId: currentUser.id)
             await store.dispatch(.recieveMessage(message))

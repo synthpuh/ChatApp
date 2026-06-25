@@ -101,7 +101,10 @@ final class ChatInputBar: UIView {
     // MARK: - Actions
     
     @objc private func sendTapped() {
-        guard let text = textView.text, !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        guard let text = textView.text,
+              !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            return
+        }
         onSend?(text)
         textView.text = ""
         textViewDidChange(textView)
