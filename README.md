@@ -1,5 +1,7 @@
 # ChatApp
 
+![Tests](https://github.com/synthpuh/ChatApp/actions/workflows/tests.yml/badge.svg)
+
 A clean, fully-tested iOS chat application built to demonstrate modern Swift architecture and concurrency. The app pairs **VIPER** for the UI layer with **Redux** for global state, uses **async/await** and **actors** for safe concurrency, **Combine** to bridge state to the view, and ships with a complete **unit / integration / UI** test pyramid.
 
 > **Status:** Runs entirely on mock data today — no backend required to build, run, or test. A real networking layer (Alamofire + WebSocket) is already scaffolded behind a protocol and is the next planned step.
