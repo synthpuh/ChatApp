@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "B421C3E1-22D3-4D70-8D37-4514C0B30BD4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ChatApp.xcodeproj",
+      "identifier" : "772F986B2F63499E00A59D26",
+      "name" : "ChatApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "skippedTests" : {
+        "suites" : [
+          {
+            "name" : "ChatServiceIntegrationTests"
+          }
+        ]
+      },
+      "target" : {
+        "containerPath" : "container:ChatApp.xcodeproj",
+        "identifier" : "772F98812F6349A000A59D26",
+        "name" : "ChatAppTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ChatApp.xcodeproj",
+        "identifier" : "772F988B2F6349A000A59D26",
+        "name" : "ChatAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

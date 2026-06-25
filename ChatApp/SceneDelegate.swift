@@ -16,7 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = makeRootViewController()
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,6 +52,52 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    private func makeRootViewController() -> UIViewController {
+        if CommandLine.arguments.contains("--uitesting") {
+            return makeUITestingRoot()
+        }
+        return makeMockRoot()
+    }
+    
+    private func makeProductionRoot() -> UIViewController {
+        let store = Store()
+        let cache = MessageCache()
+        let connection = ConnectionManager(url: URL(string: "wss://api.yourapp.com/ws")!)
+        let service = ChatServiceImpl(baseUrl: "https://api.yourapp.com",
+                                      cache: cache,
+                                      connection: connection)
+        let chatVC = ChatRouter.build(store: store, service: service)
+        return UINavigationController(rootViewController: chatVC)
+    }
+    
+    private func makeUITestingRoot() -> UIViewController {
+        let store = Store(initialState: AppState(messages: [], currentUser: User(id: "me", name: "Test User")))
+        let mockService = MockChatService()
+        mockService.mockMessages = [
+            Message(id: "1", text: "Welcome!", senderId: "u1", timestamp: .now),
+            Message(id: "2", text: "Hi there", senderId: "me", timestamp: .now)
+        ]
+        
+        let chatVC = ChatRouter.build(store: store, service: mockService)
+        return UINavigationController(rootViewController: chatVC)
+    }
+    
+    private func makeMockRoot() -> UIViewController {
+        let store = Store(initialState: AppState(messages: [],
+                                                 currentUser: User(id: "me", name: "Test user")))
+        let mockService = MockChatService()
+        mockService.mockMessages = [
+            Message(id: "1",
+                    text: "Hello",
+                    senderId: "u1",
+                    timestamp: .now),
+            Message(id: "2",
+                    text: "World",
+                    senderId: "me",
+                    timestamp: .now)
+        ]
+        let chatVc = ChatRouter.build(store: store, service: mockService)
+        return UINavigationController(rootViewController: chatVc)
+    }
 }
 

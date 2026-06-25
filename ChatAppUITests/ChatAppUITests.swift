@@ -9,33 +9,71 @@ import XCTest
 
 final class ChatAppUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    var app: XCUIApplication!
+    
+    override func setUp() {
+        super.setUp()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        app = XCUIApplication()
+        app.launchArguments = ["--uitesting"]
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
-        }
+    
+    override func tearDown() {
+        app = nil
+        super.tearDown()
+    }
+    
+    // MARK: - Message List
+    func testMessageListIsVisible() {
+        let table = app.tables.firstMatch
+        XCTAssertTrue(table.waitForExistence(timeout: 3))
+    }
+    
+    func testMessagesAppearOnLoad() {
+        let firstCell = app.tables.cells.firstMatch
+        XCTAssertTrue(firstCell.waitForExistence(timeout: 3))
+    }
+    
+    // MARK: - Sending Messages
+    func testSendButtonDisabledWhenEmpty() {
+        let sendButton = app.buttons["SendButton"]
+        XCTAssertTrue(sendButton.waitForExistence(timeout: 3))
+        XCTAssertFalse(sendButton.isEnabled)
+    }
+    
+    func testTypingEnablesSendButton() {
+        let textView = app.textViews["MessageInput"]
+        let sendButton = app.buttons["SendButton"]
+        
+        XCTAssertTrue(textView.waitForExistence(timeout: 3))
+        textView.tap()
+        textView.typeText("Hello!")
+        
+        XCTAssertTrue(sendButton.isEnabled)
+    }
+    
+    func testSendingMessageAppearsInList() {
+        let textView = app.textViews["MessageInput"]
+        let sendButton = app.buttons["SendButton"]
+        
+        textView.tap()
+        textView.typeText("Hello from UI test!")
+        sendButton.tap()
+        
+        let message = app.staticTexts["Hello from UI test!"]
+        XCTAssertTrue(message.waitForExistence(timeout: 3))
+    }
+    
+    func testInputClearsAfterSend() {
+        let textView = app.textViews["MessageInput"]
+        let sendButton = app.buttons["SendButton"]
+        
+        textView.tap()
+        textView.typeText("Test message")
+        sendButton.tap()
+        
+        let value = textView.value as? String ?? ""
+        XCTAssertNotEqual(value, "Test message")
     }
 }

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		77BD4D932F65D80000DAE9A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 77BD4D922F65D80000DAE9A4 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		772F98832F6349A000A59D26 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,9 +31,30 @@
 		772F986C2F63499E00A59D26 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772F98822F6349A000A59D26 /* ChatAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		772F988C2F6349A000A59D26 /* ChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77BD4DA52F65E84D00DAE9A4 /* ChatApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChatApp.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7702B9AC2FC5101C00AEB675 /* Exceptions for "ChatAppTests" folder in "ChatApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Integration/Networking/MockChatService.swift,
+				Unit/Modules/Chat/MockChatInteractor.swift,
+				Unit/Modules/Chat/MockChatRouter.swift,
+				Unit/Modules/Chat/MockChatView.swift,
+			);
+			target = 772F986B2F63499E00A59D26 /* ChatApp */;
+		};
+		7702B9AD2FC5101C00AEB675 /* Exceptions for "ChatAppTests" folder in "ChatAppTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Integration/Networking/MockChatService.swift,
+				Unit/Modules/Chat/MockChatInteractor.swift,
+				Unit/Modules/Chat/MockChatRouter.swift,
+				Unit/Modules/Chat/MockChatView.swift,
+			);
+			target = 772F98812F6349A000A59D26 /* ChatAppTests */;
+		};
 		772F98942F6349A000A59D26 /* Exceptions for "ChatApp" folder in "ChatApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -50,6 +75,10 @@
 		};
 		772F98852F6349A000A59D26 /* ChatAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7702B9AC2FC5101C00AEB675 /* Exceptions for "ChatAppTests" folder in "ChatApp" target */,
+				7702B9AD2FC5101C00AEB675 /* Exceptions for "ChatAppTests" folder in "ChatAppTests" target */,
+			);
 			path = ChatAppTests;
 			sourceTree = "<group>";
 		};
@@ -65,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77BD4D932F65D80000DAE9A4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +118,7 @@
 		772F98632F63499E00A59D26 = {
 			isa = PBXGroup;
 			children = (
+				77BD4DA52F65E84D00DAE9A4 /* ChatApp.xctestplan */,
 				772F986E2F63499E00A59D26 /* ChatApp */,
 				772F98852F6349A000A59D26 /* ChatAppTests */,
 				772F988F2F6349A000A59D26 /* ChatAppUITests */,
@@ -125,6 +156,7 @@
 			);
 			name = ChatApp;
 			packageProductDependencies = (
+				77BD4D922F65D80000DAE9A4 /* Alamofire */,
 			);
 			productName = ChatApp;
 			productReference = 772F986C2F63499E00A59D26 /* ChatApp.app */;
@@ -184,7 +216,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					772F986B2F63499E00A59D26 = {
 						CreatedOnToolsVersion = 16.4;
@@ -208,6 +240,9 @@
 			);
 			mainGroup = 772F98632F63499E00A59D26;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				77BD4D912F65D80000DAE9A4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 772F986D2F63499E00A59D26 /* Products */;
 			projectDirPath = "";
@@ -294,7 +329,6 @@
 				INFOPLIST_FILE = ChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +356,6 @@
 				INFOPLIST_FILE = ChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -397,6 +430,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -454,6 +488,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -571,6 +606,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77BD4D912F65D80000DAE9A4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.11.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77BD4D922F65D80000DAE9A4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77BD4D912F65D80000DAE9A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 772F98642F63499E00A59D26 /* Project object */;
 }
